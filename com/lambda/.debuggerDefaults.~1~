@@ -1,0 +1,19 @@
+# ODB Defaults -- You may edit by hand. See Manual for details
+MaxTimeStamps:			1500
+StartPattern:			"sl = 35 & sf = "Demo.java"        "
+StopPattern:		
+SourceDirectory:	
+OnlyInstrument:			"com.lambda.Debugger"
+OnlyInstrument:			"com.lambda.Debugger"
+OnlyInstrument:			"com.lambda.Debugger"
+OnlyInstrument:			"com.lambda.Debugger"
+DontInstrument:		
+DontInstrumentMethod:	
+DontInstrumentMethod:		"*	 toString"
+DontInstrumentMethod:		"*	 valueOf"
+DontRecordMethod:	
+DontRecordMethod:		"*	 toString"
+DontRecordMethod:		"*	 valueOf"
+DontRecordMethod:		"java.lang.StringBuffer	 *"
+DontRecordMethod:		"java.lang.Object	 new"
+UserSelectedField:	
