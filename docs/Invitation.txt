@@ -35,7 +35,8 @@ www.LambdaCS.com.
 
 		     	 ================
 
-Bil Lewis is a computer scientist who has worked on natural
+Bil Lewis is a computer scientist currently teaching at Tufts
+University. He has worked on natural
 language understanding, expert systems, language design, and
 programming tools.  He studied at Ripon College, the University
 of Indiana, and Penn. He has taught at Stanford and for numerous

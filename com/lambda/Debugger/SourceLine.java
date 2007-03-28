@@ -243,14 +243,14 @@ public final class SourceLine {
 	} //D.clearStartStop(); D.DISABLE=true; Defaults.writeDefaults();}
 
 	public static String getString(TimeStamp ts) {
-		int nChars = 16;
+		int nChars = 26;
 		SourceLine sl = ts.getSourceLine();
 		String s = sl.fileName;
 		if (s.length() > nChars - 6)
 			s = s.substring(0, nChars - 5);
 		s = (s + ":" + sl.line);
-		while (s.length() < nChars)
-			s = " " + s;
+		//while (s.length() < nChars)			s = " " + s;
+        s = "   " + s;
 		return s;
 	}
 

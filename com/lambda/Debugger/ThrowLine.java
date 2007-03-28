@@ -31,11 +31,11 @@ import java.util.*;
 
 public class ThrowLine extends MethodLine {
 
-    public Exception exception;
+    public Throwable exception;
 
 
 
-    public ThrowLine(int time, Exception ex, TraceLine tl) {
+    public ThrowLine(int time, Throwable ex, TraceLine tl) {
 	this.exception = ex;
 	this.traceLine = tl;
 	this.time = time;
@@ -54,7 +54,7 @@ public class ThrowLine extends MethodLine {
     }
 
     
-    public static ThrowLine addThrowLine(int slIndex, Exception ex, TraceLine tl) {
+    public static ThrowLine addThrowLine(int slIndex, Throwable ex, TraceLine tl) {
       int time = TimeStamp.addStamp(slIndex, TimeStamp.THROW, tl);
       ThrowLine rl = new ThrowLine(time, ex,  tl);
       TraceLine.addTrace(rl);

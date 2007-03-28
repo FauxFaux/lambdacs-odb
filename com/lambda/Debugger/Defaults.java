@@ -114,7 +114,7 @@ public class Defaults {
 	    }
 	    br.close();
 	    if (dontInstrument.size() > 2) Debugger.println("Not instrumenting "+ (dontInstrument.size()-2) + " extra methods");
-	    if (dontRecord.size() > 4) Debugger.println("Not recording "+ (dontRecord.size()-4) + " extra methods");
+	    if (dontRecord.size() > 5) Debugger.println("Not recording "+ (dontRecord.size()-5) + " extra methods");
 	    return false;
 	}
 	catch (FileNotFoundException e) {
@@ -134,14 +134,16 @@ public class Defaults {
 	Debugger.println("Creating new .debuggerDefaults file...");
 	String[] hide_ts = {"*", "toString"};
 	String[] hide_vo = {"*", "valueOf"};
-	String[] hide_sb = {"java.lang.StringBuffer", "*"};
+	String[] hide_sb0 = {"java.lang.StringBuilder", "*"};
+    String[] hide_sb1 = {"java.lang.StringBuffer", "*"};
 	String[] hide_in = {"*", "new"};
 	String[] hide_oi = {"java.lang.Object", "new"};
 	String[] hide_cl = {"*", "<clinit>"};
 
 	dontRecord.add(hide_ts);
 	dontRecord.add(hide_vo);
-	dontRecord.add(hide_sb);
+    dontRecord.add(hide_sb0);
+    dontRecord.add(hide_sb1);
 	dontRecord.add(hide_oi);
 	//dontRecord.add(hide_in);
 	//dontRecord.add(hide_cl);

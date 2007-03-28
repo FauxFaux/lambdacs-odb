@@ -646,30 +646,60 @@ public final class D {
 
     public static synchronized void hashtablePut(int slIndex, MyHashtable table, Object key, Object value) {
         if (PAUSE_PROGRAM) checkPAUSE();
-	if (DISABLE || recursiveEntry()) return;
-	if (CHECK_PATTERN && CHECKING_START) return;
-	recursiveEntry=true;
-	Shadow shadow = Shadow.get(table);
-	shadow.hashtablePut(slIndex, key, value);
-	recursiveEntry = false;
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtablePut(slIndex, key, value);
+        recursiveEntry = false;
     }
     public static synchronized void hashtableRemove(int slIndex, MyHashtable table, Object key) {
         if (PAUSE_PROGRAM) checkPAUSE();
-	if (DISABLE || recursiveEntry()) return;
-	if (CHECK_PATTERN && CHECKING_START) return;
-	recursiveEntry=true;
-	Shadow shadow = Shadow.get(table);
-	shadow.hashtableRemove(slIndex, key);
-	recursiveEntry = false;
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtableRemove(slIndex, key);
+        recursiveEntry = false;
     }
     public static synchronized void hashtableClear(int slIndex, MyHashtable table) {
         if (PAUSE_PROGRAM) checkPAUSE();
-	if (DISABLE || recursiveEntry()) return;
-	if (CHECK_PATTERN && CHECKING_START) return;
-	recursiveEntry=true;
-	Shadow shadow = Shadow.get(table);
-	shadow.hashtableClear(slIndex);
-	recursiveEntry = false;
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtableClear(slIndex);
+        recursiveEntry = false;
+    }
+
+    // ******************************** HASHMAP ********************************
+
+    public static synchronized void hashMapPut(int slIndex, MyHashMap table, Object key, Object value) {
+        if (PAUSE_PROGRAM) checkPAUSE();
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtablePut(slIndex, key, value);
+        recursiveEntry = false;
+    }
+    public static synchronized void hashMapRemove(int slIndex, MyHashMap table, Object key) {
+        if (PAUSE_PROGRAM) checkPAUSE();
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtableRemove(slIndex, key);
+        recursiveEntry = false;
+    }
+    public static synchronized void hashMapClear(int slIndex, MyHashMap table) {
+        if (PAUSE_PROGRAM) checkPAUSE();
+        if (DISABLE || recursiveEntry()) return;
+        if (CHECK_PATTERN && CHECKING_START) return;
+        recursiveEntry=true;
+        Shadow shadow = Shadow.get(table);
+        shadow.hashtableClear(slIndex);
+        recursiveEntry = false;
     }
 
 
@@ -1160,7 +1190,7 @@ public final class D {
 	if (DISABLE || (tl == null) || recursiveEntry()) return;
 	if (CHECK_PATTERN && CHECKING_START) return;
 	recursiveEntry=true;
-	ThrowLine.addThrowLine(slIndex, (Exception) ex, tl);
+	ThrowLine.addThrowLine(slIndex, (Throwable) ex, tl);
 	recursiveEntry = false;
     }
 

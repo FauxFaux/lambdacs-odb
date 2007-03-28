@@ -41,6 +41,6 @@ cd ~/.DebuggerReleased
 
 jar cmf META-INF/MANIFEST.MF ~/programs/Old/Debugger_DATE.jar .
 
-# phone
-echo "jarsigner ~/programs/Old/Debugger_DATE.jar  myself"
+# keytool -genkey -alias DebuggerAlias -keyalg RSA  -dname "cn=DebuggerKey" -keypass 3252667 -storepass 3252667
+echo "jarsigner ~/programs/Old/Debugger_DATE.jar DebuggerAlias"
 echo "mv ~/programs/Old/Debugger_DATE.jar  ~/programs/Old/Debugger_.jar"

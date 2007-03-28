@@ -36,8 +36,9 @@ public class DemoString {
 " \n" +
 "package com.lambda.Debugger; \n" +
 " \n" +
-"import java.io.*; \n" +
-"import java.util.*; \n" +
+"import java.util.Hashtable; \n" +
+"import java.util.Random; \n" +
+"import java.util.Vector;\n" +
 " \n" +
 "public class Demo { \n" +
 " \n" +

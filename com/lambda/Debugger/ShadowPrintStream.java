@@ -75,6 +75,7 @@ public class ShadowPrintStream {
     }
 
   public static void add(PrintStream ps, String s) {
+      if (ps == System.err) ps= System.out;
       if (s.length() > 100) s = s.substring(0, 100);
     VectorD v = (VectorD)streams.get(ps);
     ShadowPrintStream sps = new ShadowPrintStream(s, TimeStamp.eott());

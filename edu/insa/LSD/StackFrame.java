@@ -32,6 +32,6 @@ public interface StackFrame  {
     public int    getnVars();
     public int    getnArgs();
     public Object getVarName(int i);
-    public Object getVarType(int i);
+    //public Object getVarType(int i);
     //public boolean getIsParameter(int i);
 }

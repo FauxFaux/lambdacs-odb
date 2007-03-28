@@ -258,7 +258,7 @@ public class InstrumentorForCL {
 
 
     public static void main(String args[]) throws Exception {
-	String destination = "/Users/billewis/Debugger/com";
+	String destination = "/Users/bil/Debugger/com";
 	if (args.length > 0) destination = args[0];
 	destination += "ClassLoader.jar";
 	InstrumentorForCL ins = new InstrumentorForCL();

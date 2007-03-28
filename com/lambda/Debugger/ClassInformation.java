@@ -29,12 +29,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 
 
 public class ClassInformation {
-    static private ClassInformation	arrayCI, vectorCI, arraylistCI, hashtableCI;
+    static private ClassInformation	arrayCI, vectorCI, arraylistCI, hashtableCI, hashMapCI;
     static private HashMapEq		table = new HashMapEq(20);		// Class -> <CI varNames>
     static private HashMapEq		classTable = new HashMapEq(200);	// Class -> <CI staticVarNames>
     static private HashMapEq		usfTable = new HashMapEq(20);		// ClassName -> fieldName
@@ -79,14 +80,18 @@ public class ClassInformation {
 	return (this == arraylistCI) ;
     }
     public boolean isHashtable() {
-	return (this == hashtableCI) ;
+        return (this == hashtableCI) ;
+    }
+    public boolean isHashMap() {
+        return (this == hashMapCI) ;
     }
 
     public int getnInstanceVars() {
 	if (isArray()) return 0;
 	if (isVector()) return 0;
 	if (isArrayList()) return 0;
-	if (isHashtable()) return 0;
+        if (isHashtable()) return 0;
+        if (isHashMap()) return 0;
 	return varNames.length;
     }
 
@@ -108,7 +113,8 @@ public class ClassInformation {
 	if (isArray()) return ""+i;
 	if (isVector()) return ""+i;
 	if (isArrayList()) return ""+i;
-	if (isHashtable()) return ""+i;
+        if (isHashtable()) return ""+i;
+        if (isHashMap()) return ""+i;
 	if (i >= varNames.length) throw new DebuggerException("getVarName("+i+") " + this);
 	return varNames[i];
     }
@@ -128,7 +134,8 @@ public class ClassInformation {
 	arrayCI = new ClassInformation(Object[].class, null, null, null);
 	vectorCI = new ClassInformation(MyVector.class, null, null, null);
 	arraylistCI = new ClassInformation(MyArrayList.class, null, null, null);
-	hashtableCI = new ClassInformation(Hashtable.class, null, null, null);
+        hashtableCI = new ClassInformation(Hashtable.class, null, null, null);
+        hashMapCI = new ClassInformation(HashMap.class, null, null, null);
 	Class c;
 	c = Object[].class; table.put(c, arrayCI); classTable.put(c, arrayCI);
 	c = int[].class; table.put(c, arrayCI); classTable.put(c, arrayCI);
@@ -143,7 +150,8 @@ public class ClassInformation {
 	c = MyVector.class; table.put(c, vectorCI); classTable.put(c, vectorCI);
 	c = MyArrayList.class; table.put(c, arraylistCI); classTable.put(c, arraylistCI);
 	c = LocksList.class; table.put(c, vectorCI); classTable.put(c, vectorCI);
-	c = MyHashtable.class; table.put(c, hashtableCI); classTable.put(c, hashtableCI);
+        c = MyHashtable.class; table.put(c, hashtableCI); classTable.put(c, hashtableCI);
+        c = MyHashMap.class; table.put(c, hashMapCI); classTable.put(c, hashMapCI);
     }
   
     public static ClassInformation get(Object o) {

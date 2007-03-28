@@ -1,6 +1,6 @@
 #                        Aliases for Debugger demos when unpacked on ${HOME}/Debugger
 
-setenv CLASSPATH /Users/billewis/Debugger:.
+setenv CLASSPATH /Users/bil/Debugger:.
 alias jc  'echo Compiling: *.java; javac -g *.java'
 alias jd  'echo Compiling: *.java; javac -g *.java; debugify Demo*.class'
 alias jcc 'echo Compiling: *.java; javac -g *.java; debugify Demo*.class; ddebugify *.class; javac My*java'

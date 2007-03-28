@@ -86,10 +86,10 @@ public class TraceLine extends MethodLine {
 	if (locals==null) return "NONAME";
 	return locals.getVarName(i);
     }
-    public Class[] getVarTypes() {
-	if (locals==null) return null;
-	return locals.getVarTypes();
-    }
+//    public Class[] getVarTypes() {
+//	if (locals==null) return null;
+//	return locals.getVarTypes();
+//    }
     public Class getVarType(int i) {
 	if (locals==null) return null;
 	return locals.getVarType(i);

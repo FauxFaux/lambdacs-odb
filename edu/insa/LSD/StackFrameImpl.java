@@ -53,7 +53,7 @@ public class StackFrameImpl implements StackFrame  {
     public Object getThisObjectClass() {return((tl.thisObj instanceof Class) ? tl.thisObj : tl.thisObj.getClass());}
     public boolean getIsMethodStatic() {return(tl.thisObj instanceof Class);}
     public Object getVarName(int i) {return getVar(i).varName();}
-    public Object getVarType(int i) {return getVar(i).getVarType();}
+    //public Object getVarType(int i) {return getVar(i).getVarType();}
     public Object getVarValue(int i) {return getVar(i).value();}
     public int    getnVars() {VectorD v = initVars(); return v.size();}
     public int    getnArgs() {return tl.getArgCount();}

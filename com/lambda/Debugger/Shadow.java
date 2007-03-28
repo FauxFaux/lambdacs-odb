@@ -35,6 +35,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 
 public class Shadow {
@@ -315,7 +316,8 @@ public class Shadow {
     // Update the actual object to reflect the currently revert'd time.  
     public static void update(Object o) {
 	if (o instanceof MyVector) return;
-	if (o instanceof MyHashtable) return;
+        if (o instanceof MyHashtable) return;
+        if (o instanceof MyHashMap) return;
 	if (o instanceof MyArrayList) return;
 	try {update1(o);}
 	catch (Exception e) {
@@ -1105,12 +1107,17 @@ public class Shadow {
 	    s = new Shadow(TimeStamp.eott(), v, notForeign);
 	    table.put(o, s);
 	    return s;
-	}  else 	    if ((o instanceof MyHashtable)) {
-	    MyHashtable h = (MyHashtable) o;		
-	    s = new Shadow(TimeStamp.eott(), h, notForeign);
-	    table.put(o, s);
-	    return s;
-	} 
+	}  else            if ((o instanceof MyHashtable)) {
+            MyHashtable h = (MyHashtable) o;            
+            s = new Shadow(TimeStamp.eott(), h, notForeign);
+            table.put(o, s);
+            return s;
+        }  else             if ((o instanceof MyHashMap)) {
+            MyHashMap h = (MyHashMap) o;            
+            s = new Shadow(TimeStamp.eott(), h, notForeign);
+            table.put(o, s);
+            return s;
+        } 
 
 	Field[] f;
 	int nFields = 0, index = 0;
@@ -1395,14 +1402,26 @@ public class Shadow {
     }
 
     public Shadow(int time, MyHashtable v, boolean notForeign) {
-	classInfo = ClassInformation.get(v);
-	obj = v;
-	int i = 0;
-	creationTime = time;
-	shadowVars = new HistoryList[v.size()+10];
-	foreign = !notForeign;
-	id = classInfo.nextID();
-	tostring = tostringShort = "<MyHashtable_"+id+">";     // WHY do I need this?
+        classInfo = ClassInformation.get(v);
+        obj = v;
+        int i = 0;
+        creationTime = time;
+        shadowVars = new HistoryList[v.size()+10];
+        foreign = !notForeign;
+        id = classInfo.nextID();
+        tostring = tostringShort = "<MyHashtable_"+id+">";     // WHY do I need this?
+    }
+
+
+    public Shadow(int time, MyHashMap v, boolean notForeign) {
+        classInfo = ClassInformation.get(v);
+        obj = v;
+        int i = 0;
+        creationTime = time;
+        shadowVars = new HistoryList[v.size()+10];
+        foreign = !notForeign;
+        id = classInfo.nextID();
+        tostring = tostringShort = "<MyHashMap"+id+">";     // WHY do I need this?
     }
 
 
@@ -1418,7 +1437,10 @@ public class Shadow {
 	return classInfo.isArrayList();
     }
     protected boolean isHashtable() {
-	return classInfo.isHashtable();
+        return classInfo.isHashtable();
+    }
+    protected boolean isHashMap() {
+        return classInfo.isHashMap();
     }
 
 
@@ -1530,18 +1552,15 @@ public class Shadow {
 	    return;
 	}
 
-	if (o instanceof MyHashtable) {
-	    /*
-	      MyHashtable array = (MyHashtable) o;
-	    int l = array.size();
-	    for (int i = 0; i < l; i++) {
-		HistoryList hl = s.getShadowVar(i);
-		if ((hl.getLastValue()) != array.get(i)) s.addToShadowVar(i, now, array.get(i));
-	    }
-	    */
-	    Debugger.println("Not implmented 1");
-	    return;
-	}
+        if (o instanceof MyHashtable) {
+            Debugger.println("Not implmented MyHashtable");
+            return;
+        }
+
+        if (o instanceof MyHashMap) {
+            Debugger.println("Not implmented MyHashMap");
+            return;
+        }
 
 
 
@@ -2091,7 +2110,7 @@ private String createThreadPrintString() {
     }
 
     public int size() {
-	if (isHashtable() || isVector() || isArrayList()) {
+	if (isHashtable() || isHashMap() || isVector() || isArrayList()) {
 	    for (int i = 0; i < shadowVars.length; i++) {
 		if (shadowVars[i] == null) return i;
 	    }

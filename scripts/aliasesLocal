@@ -6,7 +6,7 @@ setenv USER_FLAGS
 
 
 # It is assumed (required!) that CLASSPATH is properly set.
-setenv CLASSPATH /Users/billewis/Debugger:.
+setenv CLASSPATH /Users/bil/Debugger:.
 setenv demoPrograms " Quick*.class Rewrite*.class Analysis.class PrefixEntry.class WordEntry.class Demo*.class"
 alias jc  'echo Compiling: *.java; javac -g *.java'
 alias jd  "echo Compiling: *.java; javac -g *.java; debugify $demoPrograms; java com.lambda.Debugger.InstrumentorForCL"
@@ -75,8 +75,8 @@ setenv ldir			~/Debugger/com/lambda/Debugger
 # The simple demo program. This can be run from the File Chooser menu too (push "Demo").
 # Why did we want java 13?
 alias java13 /System/Library/Frameworks/JavaVM.framework/Versions/1.3.1/Commands/java
-alias demo       "(cd $ddir; java13 $dHEAP_SIZE $DDPATH  -DDONT_INSTRUMENT                 	$debugger $demo)"
-alias lemo       "(cd $ldir; java13 $dHEAP_SIZE $ddPATH  -DDONT_INSTRUMENT $ddFLAGS         	$debugger $demo)"
+alias demo       "(cd $ddir; java $dHEAP_SIZE $DDPATH  -DDONT_INSTRUMENT                 	$debugger $demo)"
+alias lemo       "(cd $ldir; java $dHEAP_SIZE $ddPATH  -DDONT_INSTRUMENT $ddFLAGS         	$debugger $demo)"
 
 alias ddb	 java $ddHEAP_SIZE $dPATH '$USER_FLAGS' -DDDONT_INSTRUMENT -DDDONT_SHOW   	$ddebugger $debugger
 alias ddebug	 java $ddHEAP_SIZE $dPATH '$USER_FLAGS' $ddebugFLAGS  	            	$ddebugger $debugger
@@ -91,12 +91,12 @@ alias ddebugifyF java $ddHEAP_SIZE $dbfyPATH  -DPUTFIELD_ONLY                   
 
 
 # The complex demo program. This must be run from the command line with the jar file unpacked &everything ddebugified.
-alias ddemo       "(cd $ddir; java13 $ddHEAP_SIZE $DDPATH $ddebugFLAGS -DDPAUSED -DBUG -DVGA -DDVGA 	    $ddebugger $debugger $demo)"
-alias ldemo       "(cd $ldir; java13 $ddHEAP_SIZE $ddPATH $ddebugFLAGS -DDPAUSED -DBUG -DVGA -DDVGA $ddFLAGS   $ddebugger $debugger $demo)"
-alias ddemonp    "(cd $ddir; java13 $ddHEAP_SIZE $DDPATH $ddebugFLAGS -DBUG -DVGA -DDVGA       	   	    $ddebugger $debugger $demo)"
-alias ldemonp    "(cd $ldir; java13 $ddHEAP_SIZE $ddPATH $ddebugFLAGS  -DBUG -DVGA -DDVGA  	    $ddebugger $debugger $demo)"
-setenv SW_DIR /Users/billewis/programs/AspectJ/docs/examples/spacewar
-alias spacewar	  "(cd $SW_DIR; java13 -Xmx200100100 -Xms200100100 -DDMEMORY=80100100 -cp /Users/billewis/.Demo:.:/Users/billewis/programs/AspectJ/ajre/lib/aspectjrt.jar -DDVGA lambda.Debugger.Debugger spacewar.Game)"
+alias ddemo       "(cd $ddir; java $ddHEAP_SIZE $DDPATH $ddebugFLAGS -DDPAUSED -DBUG -DVGA -DDVGA 	    $ddebugger $debugger $demo)"
+alias ldemo       "(cd $ldir; java $ddHEAP_SIZE $ddPATH $ddebugFLAGS -DDPAUSED -DBUG -DVGA -DDVGA $ddFLAGS   $ddebugger $debugger $demo)"
+alias ddemonp    "(cd $ddir; java $ddHEAP_SIZE $DDPATH $ddebugFLAGS -DBUG -DVGA -DDVGA       	   	    $ddebugger $debugger $demo)"
+alias ldemonp    "(cd $ldir; java $ddHEAP_SIZE $ddPATH $ddebugFLAGS  -DBUG -DVGA -DDVGA  	    $ddebugger $debugger $demo)"
+setenv SW_DIR /Users/bil/programs/AspectJ/docs/examples/spacewar
+alias spacewar	  "(cd $SW_DIR; java -Xmx200100100 -Xms200100100 -DDMEMORY=80100100 -cp /Users/bil/.Demo:.:/Users/bil/programs/AspectJ/ajre/lib/aspectjrt.jar -DDVGA lambda.Debugger.Debugger spacewar.Game)"
 
 # These are for debugging the debugger.
 alias debugd	 java $ddHEAP_SIZE $ddPATH  -DDEBUG_DEBUGGER                  $debugger
@@ -109,10 +109,10 @@ alias ddemoJFC   java $ddHEAP_SIZE $ddBPATH -DDDONT_INSTRUMENT                $d
 # For spacewar
 
 setenv SW_HOME		${HOME}/programs/AspectJ/docs/examples/spacewar/
-setenv SWPATH		'-cp ${HOME}/.Demo:${SW_HOME}:/Users/billewis/programs/AspectJ/aspectj1.0/lib/aspectjrt.jar:.'
-#setenv CLASSPATH ${CLASSPATH}:/Users/billewis/programs/AspectJ/aspectj1.0/lib/aspectjrt.jar:.
+setenv SWPATH		'-cp ${HOME}/.Demo:${SW_HOME}:/Users/bil/programs/AspectJ/aspectj1.0/lib/aspectjrt.jar:.'
+#setenv CLASSPATH ${CLASSPATH}:/Users/bil/programs/AspectJ/aspectj1.0/lib/aspectjrt.jar:.
 
-alias debugS   "(cd $SW_HOME; java13 $ddHEAP_SIZE $SWPATH  -DDVGA $ddebugger spacewar.Game)"
+alias debugS   "(cd $SW_HOME; java $ddHEAP_SIZE $SWPATH  -DDVGA $ddebugger spacewar.Game)"
 
 
 alias debugLaunch "(cd $HOME/Debugger/com/lambda/RegressionTests; debugn Launch)"
